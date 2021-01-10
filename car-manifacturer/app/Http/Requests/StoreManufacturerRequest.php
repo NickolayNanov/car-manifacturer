@@ -11,20 +11,21 @@ class StoreManufacturerRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required', 'string',
+            ],
+            'date_created' => [
+                'required', 'date',
+            ]
         ];
+    }
+
+    public function authorize()
+    {
+        //return Gate::allows('task_access');
+        return true;
     }
 }
