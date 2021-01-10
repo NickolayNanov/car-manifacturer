@@ -6,6 +6,7 @@ use App\Http\Requests\StoreManufacturerRequest;
 use App\Http\Requests\UpdateManufacturerRequest;
 use App\Models\Manufacturer;
 use App\Models\Task;
+use Exception;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -72,7 +73,6 @@ class ManufacturersController extends Controller
      * @param UpdateManufacturerRequest $request
      * @param Manufacturer $manufacturer
      * @return Response
-     * @throws ValidationException
      */
     public function update(UpdateManufacturerRequest $request, Manufacturer $manufacturer)
     {
@@ -85,6 +85,7 @@ class ManufacturersController extends Controller
      *
      * @param Manufacturer $manufacturer
      * @return Response
+     * @throws Exception
      */
     public function destroy(Manufacturer $manufacturer)
     {
