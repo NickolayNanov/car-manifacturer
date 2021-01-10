@@ -13,7 +13,7 @@ class CreateModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('models', function (Blueprint $table) {
+        Schema::create('car_models', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('manufacturer_id')->unsigned()->index();
@@ -28,6 +28,6 @@ class CreateModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('models');
+        Schema::dropIfExists('car_models');
     }
 }

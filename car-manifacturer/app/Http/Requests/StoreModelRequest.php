@@ -13,7 +13,8 @@ class StoreModelRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        //return Gate::allows('items_access');
+        return true;
     }
 
     /**
@@ -21,10 +22,15 @@ class StoreModelRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'name' => [
+                'required'
+            ],
+            'manufacturer_id' => [
+                'required'
+            ]
         ];
     }
 }

@@ -13,7 +13,7 @@ class UpdateModelRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateModelRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required'
+            ],
+            'manufacturer_id' => [
+                'required'
+            ]
         ];
     }
 }
