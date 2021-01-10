@@ -11,20 +11,24 @@ class UpdateCarRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        //return Gate::allows('task_access');
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'year_created' => [
+                'required'
+            ],
+            'kilometers' => [
+                'required'
+            ],
+            'car_model_id' => [
+                'required'
+            ]
         ];
     }
 }
