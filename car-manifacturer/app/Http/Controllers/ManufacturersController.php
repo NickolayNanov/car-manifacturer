@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Http\Requests\StoreManufacturerRequest;
+use App\Http\Requests\UpdateManufacturerRequest;
+use App\Models\Manufacturer;
+use App\Models\Task;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 
 class ManufacturersController extends Controller
 {
@@ -14,7 +18,8 @@ class ManufacturersController extends Controller
      */
     public function index()
     {
-        //
+        $manufacturers = Manufacturer::all();
+        return view('manufacturers.index', compact('manufacturers'));
     }
 
     /**
@@ -24,62 +29,66 @@ class ManufacturersController extends Controller
      */
     public function create()
     {
-        //
+        return view('manufacturers.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreManufacturerRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreManufacturerRequest $request)
     {
-        //
+        Manufacturer::create($request->validated());
+        return redirect()->route('manufacturers.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Manufacturer $manufacturer
      * @return Response
      */
-    public function show($id)
+    public function show(Manufacturer $manufacturer)
     {
-        //
+        return view('manufacturers.show', compact('manufacturer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Manufacturer $manufacturer
      * @return Response
      */
-    public function edit($id)
+    public function edit(Manufacturer $manufacturer)
     {
-        //
+        return view('manufacturers.edit', compact('manufacturer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  int  $id
+     * @param UpdateManufacturerRequest $request
+     * @param Manufacturer $manufacturer
      * @return Response
+     * @throws ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(UpdateManufacturerRequest $request, Manufacturer $manufacturer)
     {
-        //
+        $manufacturer->update($request->validated());
+        return redirect()->route('manufacturers.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Manufacturer $manufacturer
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Manufacturer $manufacturer)
     {
-        //
+        $manufacturer->delete();
+        return redirect()->route('manufacturers.index');
     }
 }

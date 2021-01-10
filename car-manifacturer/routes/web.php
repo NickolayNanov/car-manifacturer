@@ -23,4 +23,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::resource('manufacturers', \App\Http\Controllers\ManufacturersController::class);
 Route::resource('cars', \App\Http\Controllers\CarsController::class);
-Route::resource('models', \App\Http\Controllers\ModelsController::class);
+Route::resource('models', \App\Http\Controllers\CarModelsController::class);
