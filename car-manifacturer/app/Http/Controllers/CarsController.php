@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
 use App\Models\CarModel;
 use App\Models\Manufacturer;
 use App\Models\Car;
@@ -60,42 +61,52 @@ class CarsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Car $car)
     {
-        //
+        $model = CarModel::find($car->car_model_id);
+        $manufacturer = Manufacturer::find($model->manufacturer_id);
+
+        $car->model = $model->name;
+        $car->manufacturer = $manufacturer->name;
+
+        return view('cars.show', compact('car'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Car $car
      * @return Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        $models = CarModel::all();
+        return view('cars.edit', compact('car'), compact('models'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  int  $id
+     * @param UpdateCarRequest $request
+     * @param Car $car
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCarRequest $request, Car $car)
     {
-        //
+        $car->update($request->validated());
+        return redirect()->route('cars.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Car $car
      * @return Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Car $car)
     {
-        //
+        $car->delete();
+        return redirect()->route('cars.index');
     }
 }

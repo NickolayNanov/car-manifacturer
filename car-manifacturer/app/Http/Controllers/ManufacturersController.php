@@ -64,6 +64,7 @@ class ManufacturersController extends Controller
      */
     public function edit(Manufacturer $manufacturer)
     {
+
         return view('manufacturers.edit', compact('manufacturer'));
     }
 
