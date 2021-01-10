@@ -15,10 +15,10 @@ class StoreManufacturerRequest extends FormRequest
     {
         return [
             'name' => [
-                'required', 'string',
+                'required'
             ],
             'date_created' => [
-                'required', 'date',
+                'required'
             ]
         ];
     }

@@ -61,7 +61,7 @@ class CarModelsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param CarModel $carModel
+     * @param CarModel $model
      * @return Response
      */
     public function show(CarModel $model)
