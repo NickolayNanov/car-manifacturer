@@ -16,6 +16,21 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('manufacturers.index') }}" :active="request()->routeIs('manufacturers.index')">
+                        {{ __('Manufacturers') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('models.index') }}" :active="request()->routeIs('models.index')">
+                        {{ __('Models') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('cars.index') }}" :active="request()->routeIs('cars.index')">
+                        {{ __('Cars') }}
+                    </x-jet-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
